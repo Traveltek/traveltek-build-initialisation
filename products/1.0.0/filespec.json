@@ -1,0 +1,8 @@
+{
+  "config/global.yaml": {
+      "type":"yaml-config"
+  },
+  "display/global.scss": {
+      "type": "scss-variables"
+  }
+}
