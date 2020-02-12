@@ -1,0 +1,24 @@
+{
+  "directories": [
+    "config",
+    "display",
+    "includes",
+    "includes/footer",
+    "includes/head",
+    "includes/header",
+    "locales",
+    "locales/en"
+  ],
+  "yamlconfig": ["config/global.yaml"],
+  "scssvariables": ["display/global.css"],
+  "localefiles": ["locales/en/basket.json"],
+  "other": [
+    "gulpfile.js",
+    "package.json",
+    "yarn.lock",
+    ".gitignore",
+    "includes/head/partial.html",
+    "includes/header/partial.html",
+    "includes/footer/partial.html"
+  ]
+}

@@ -4,6 +4,7 @@
 
 const path = require("path");
 const inquirer = require("inquirer");
+const loadinit = require("./init");
 
 const products = {
   basket: ["1.0.0", "0.1.0"],
@@ -53,15 +54,15 @@ function init(params) {
         choices: Object.keys(products)
       })
       .then(panswers => {
-        product = panswers.product;
+        console.log(panswers);
         inquirer
           .prompt({
             type: "list",
             name: "versionno",
-            choices: products[product]
+            choices: products[panswers.product]
           })
           .then(vanswers => {
-            dosummit(product, vanswers.versionno);
+            loadinit(params.cwd, panswers.product, vanswers.versionno);
           });
       });
   } else {
@@ -72,12 +73,7 @@ function init(params) {
         choices: products[params.product]
       })
       .then(vanswers => {
-        dosummit(params.product, vanswers.versionno);
+        loadinit(params.cwd, params.product, vanswers.versionno);
       });
   }
-}
-
-function dosummit(product, versionno) {
-  console.log(product);
-  console.log(versionno);
 }

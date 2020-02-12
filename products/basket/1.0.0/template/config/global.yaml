@@ -1,0 +1,162 @@
+date:
+  format: DD/MM/YYYY
+  longFormat: Do MMMM YYYY
+currency:
+  code: GBP
+  symbol: "£"
+routes:
+  homepage: ""
+  tour:
+    search: "/search/events/"
+    results: "search/events/results/:locationid/:startdate/:enddate/:spreadnights"
+    details: "/search/events/details/:productid/:tourid/:resultno"
+    fusionbooking: "//secure.traveltek.net/fusion/bookingform.pl?sessionkey="
+paxconfig:
+  isAdultRequired: true
+  adultAgeRange:
+    - 18
+  childrenAgeRange:
+    - 2
+    - 17
+  infantAgeRange:
+    - 0
+    - 1
+  maxPax: 6
+  minAdults: 1
+  maxPerRoom: 3
+  maxRoomCount: 3
+  defaultAdults: 2
+basket:
+  redirectOnSuccess: true
+  redirectUrl: "/fusion/itinerary.pl?sessionkey=[sessionkey]"
+BasketCards:
+  BasketFlightCard:
+    segments:
+      - [AIRLINE, {}]
+      - [ARRIVE, { modifier: "" }]
+      - [DEPART, { modifier: "" }]
+      - [DURATION, { modifier: "" }]
+    items:
+      - [EDIT_BUTTON, { modifier: "" }]
+      - [INFO_BUTTON, { modifier: "" }]
+      - [PRICE, { modifier: "" }]
+      - [REMOVE_BUTTON, { modifier: "" }]
+      - [SEGMENTS, {}]
+      - [TITLE, { modifier: "" }]
+  BasketHotelCard:
+    - [ADDRESS, { modifier: "" }]
+    - [BOARDBASIS, { modifier: "" }]
+    - [CHECKIN, { modifier: "" }]
+    - [CHECKOUT, { modifier: "" }]
+    - [DESTINATION, { modifier: "" }]
+    - [EDIT_BUTTON, { modifier: "" }]
+    - [ESSENTIALINFO, { modifier: "" }]
+    - [IMAGE, {}]
+    - [INFO_BUTTON, { modifier: "" }]
+    - [NAME, { modifier: "" }]
+    - [NIGHTS, { modifier: "" }]
+    - [PAX, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [REMOVE_BUTTON, { modifier: "" }]
+    - [ROOMLIST, { modifier: "" }]
+    - [ROOMTYPE, { modifier: "" }]
+    - [ROOMVIEW, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+  BasketTourCard:
+    - [DESCRIPTION, { modifier: "" }]
+    - [EDIT_BUTTON, { modifier: "" }]
+    - [ENDDATE, { modifier: "" }]
+    - [IMAGE, { modifier: "" }]
+    - [INFO_BUTTON, { modifier: "" }]
+    - [LOCATION, { modifier: "" }]
+    - [NAME, { modifier: "" }]
+    - [NIGHTS, { modifier: "" }]
+    - [PRICE, { modifier: "SECODARY" }]
+    - [REMOVE_BUTTON, { modifier: "" }]
+    - [STARTDATE, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+  BasketPriceModCard:
+    - [PRICE, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+  BasketCarhireCard:
+    - [DATES, { modifier: "" }]
+    - [DROPOFF, { modifier: "" }]
+    - [IMAGE, {}]
+    - [INFO_BUTTON, { modifier: "" }]
+    - [EDIT_BUTTON, { modifier: "" }]
+    - [NAME, { modifier: "" }]
+    - [PICKUP, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [REMOVE_BUTTON, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+    - [VEHICLETYPE, { modifier: "" }]
+  BasketTransferCard:
+    - [DROPOFF, { modifier: "" }]
+    - [INFO_BUTTON, { modifier: "" }]
+    - [EDIT_BUTTON, { modifier: "" }]
+    - [NAME, { modifier: "" }]
+    - [PICKUP, { modifier: "" }]
+    - [PICKUP_DATE, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [REMOVE_BUTTON, { modifier: "" }]
+    - [RETURN_DATE, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+    - [VEHICLETYPE, { modifier: "" }]
+  BasketAttractionCard:
+    - [INFO_BUTTON, { modifier: "" }]
+    - [EDIT_BUTTON, { modifier: "" }]
+    - [NAME, { modifier: "" }]
+    - [IMAGE, {}]
+    - [DATE, { modifier: "" }]
+    - [DESCRIPTION, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [REMOVE_BUTTON, { modifier: "" }]
+    - [TITLE, { modifier: "" }]
+BasketModals:
+  BasketFlightModal:
+    segments:
+      - [HEADER, { modifier: "" }]
+      - [NUMBER, { modifier: "" }]
+      - [AIRLINE, { modifier: "" }]
+      - [DEPART, { modifier: "" }]
+      - [DURATION, { modifier: "" }]
+      - [ARRIVE, { modifier: "" }]
+      - [CLASS, { modifier: "" }]
+      - [STOPS, { modifier: "" }]
+    stops:
+      - [STOP_ICON, {}]
+      - [STOP_TITLE, { modifier: "" }]
+      - [STOP_TEXT, { modifier: "" }]
+      - [ARRIVE_ICON, {}]
+      - [ARRIVE_TIME, { modifier: "" }]
+      - [ARRIVE_DATE, { modifier: "" }]
+      - [DEPART_ICON, {}]
+      - [DEPART_TIME, { modifier: "" }]
+      - [DEPART_DATE, { modifier: "" }]
+  BasketHotelModal:
+    - [DESCRIPTION, { modifier: "" }]
+    - [IMAGES, { modifier: "" }]
+    - [LOCATION, { modifier: "" }]
+  BasketTransferModal:
+    - [PICKUP, { modifier: "" }]
+    - [DROPOFF, { modifier: "" }]
+    - [RETURN_DATE, { modifier: "" }]
+    - [VEHICLE_TYPE, { modifier: "" }]
+    - [ENGINE, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [DESCRIPTION, { modifier: "" }]
+  BasketCarhireModal:
+    - [IMAGE, { modifier: "" }]
+    - [PICKUP, { modifier: "" }]
+    - [DROPOFF, { modifier: "" }]
+    - [VEHICLE_TYPE, { modifier: "" }]
+    - [ENGINE, { modifier: "" }]
+    - [SUPPLIER, { modifier: "" }]
+    - [TRANSMISSION, { modifier: "" }]
+    - [DOORS, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [EXTRAS, { modifier: "" }]
+    - [ESSENTIALS, { modifier: "" }]
+  BasketAttractionModal:
+    - [DESCRIPTION, { modifier: "" }]
+    - [IMAGES, { modifier: "" }]
