@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Command line tool for initialising traveltek build repositories.",
   "main": "cli.js",
-  "repository": "git@github.com:Traveltek/traveltek-build-initialisation.git",
   "author": "Michael Simm <michael@traveltek.net>",
-  "private": true,
   "bin": "./cli.js",
   "dependencies": {
     "inquirer": "^7.0.4",
     "yargs": "^15.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Traveltek/traveltek-build-initialisation.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
