@@ -1,6 +1,6 @@
 {
   "name": "ttinit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Command line tool for initialising traveltek build repositories.",
   "main": "cli.js",
   "author": "Michael Simm <michael@traveltek.net>",
