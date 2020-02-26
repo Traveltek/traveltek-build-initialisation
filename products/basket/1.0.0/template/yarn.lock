@@ -3527,11 +3527,6 @@ tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
-traveltek-react-basket-toolkit-styles@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/traveltek-react-basket-toolkit-styles/-/traveltek-react-basket-toolkit-styles-1.1.1.tgz#0daa7d0cf341a4d06c3bc545ebe90a49631a1848"
-  integrity sha512-fwcICGD9pktH8ZdxlQuy+YZ15vcW/0QEbrHpa8xamKnz244ti9jaAaWQ3UuikocoaTwqev7qLjD/rJ/R0KOfCQ==
-
 trim-newlines@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-1.0.0.tgz#5887966bb582a4503a41eb524f7d35011815a613"

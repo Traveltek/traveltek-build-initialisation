@@ -1,17 +1,19 @@
 {
-  "name": "ttinit",
-  "version": "1.0.2",
+  "name": "@traveltek/ttinit",
+  "version": "1.0.0",
   "description": "Command line tool for initialising traveltek build repositories.",
   "main": "cli.js",
   "author": "Michael Simm <michael@traveltek.net>",
-  "bin": "./cli.js",
+  "bin": {
+    "ttinit": "./cli.js"
+  },
   "dependencies": {
     "inquirer": "^7.0.4",
     "yargs": "^15.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Traveltek/traveltek-build-initialisation.git"
+    "url": "ssh://git@github.com/Traveltek/traveltek-build-initialisation.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

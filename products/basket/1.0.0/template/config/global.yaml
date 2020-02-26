@@ -4,13 +4,6 @@ date:
 currency:
   code: GBP
   symbol: "£"
-routes:
-  homepage: ""
-  tour:
-    search: "/search/events/"
-    results: "search/events/results/:locationid/:startdate/:enddate/:spreadnights"
-    details: "/search/events/details/:productid/:tourid/:resultno"
-    fusionbooking: "//secure.traveltek.net/fusion/bookingform.pl?sessionkey="
 paxconfig:
   isAdultRequired: true
   adultAgeRange:
@@ -26,9 +19,6 @@ paxconfig:
   maxPerRoom: 3
   maxRoomCount: 3
   defaultAdults: 2
-basket:
-  redirectOnSuccess: true
-  redirectUrl: "/fusion/itinerary.pl?sessionkey=[sessionkey]"
 BasketCards:
   BasketFlightCard:
     segments:
@@ -137,26 +127,3 @@ BasketModals:
     - [DESCRIPTION, { modifier: "" }]
     - [IMAGES, { modifier: "" }]
     - [LOCATION, { modifier: "" }]
-  BasketTransferModal:
-    - [PICKUP, { modifier: "" }]
-    - [DROPOFF, { modifier: "" }]
-    - [RETURN_DATE, { modifier: "" }]
-    - [VEHICLE_TYPE, { modifier: "" }]
-    - [ENGINE, { modifier: "" }]
-    - [PRICE, { modifier: "" }]
-    - [DESCRIPTION, { modifier: "" }]
-  BasketCarhireModal:
-    - [IMAGE, { modifier: "" }]
-    - [PICKUP, { modifier: "" }]
-    - [DROPOFF, { modifier: "" }]
-    - [VEHICLE_TYPE, { modifier: "" }]
-    - [ENGINE, { modifier: "" }]
-    - [SUPPLIER, { modifier: "" }]
-    - [TRANSMISSION, { modifier: "" }]
-    - [DOORS, { modifier: "" }]
-    - [PRICE, { modifier: "" }]
-    - [EXTRAS, { modifier: "" }]
-    - [ESSENTIALS, { modifier: "" }]
-  BasketAttractionModal:
-    - [DESCRIPTION, { modifier: "" }]
-    - [IMAGES, { modifier: "" }]

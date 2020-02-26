@@ -15,21 +15,6 @@ const fs = require("fs");
 const path = require("path");
 const rimraf = require("rimraf");
 const readline = require("readline");
-const sass = require("gulp-sass");
-const filesExist = require("files-exist");
-const streamqueue = require("streamqueue");
-const rename = require("gulp-rename");
-const configfile = process.env.SERVER_HOST
-  ? "config.production"
-  : "config.development";
-const config = require(`../public/${configfile}`);
-
-const options = {
-  onMissing: function(file) {
-    console.log("file not found: " + file);
-    return false;
-  }
-};
 
 var builddir = process.env.BUILD_DIR || __dirname + "/public";
 var streams = [];
@@ -106,6 +91,7 @@ function onProxyRes(proxyRes, req, res) {
 
 function onProxyReq(proxyReq, req, res) {
   proxyReq.setHeader("accept-encoding", "");
+  proxyReq.setHeader("X-Build-Development", "1");
   proxyReq.removeHeader("If-None-Match");
 }
 
@@ -113,7 +99,7 @@ function rewriteContent(content) {
   //content = content.replace(/HEAD/, "");
   content = content.replace(
     /\%CLIENTINCLUDES\%/,
-    '<link rel="stylesheet" type="text/css" href="/public/variables.css"/><link rel="stylesheet" type="text/css" href="/public/config-styles.css" /><script type="text/javascript">window.traveltek_locale_base = "/public/locales";window.traveltek_config_base = "/public/config"</script>'
+    '<link rel="stylesheet" type="text/css" href="/public/variables.css" /><script type="text/javascript">window.traveltek_config_base = "/public"</script>'
   );
   content = rewriteIncludes(content);
   return content;
@@ -127,65 +113,12 @@ function reload() {
 }
 
 // display
+
 function compileDisplay() {
   return gulp
     .src("display/*.css")
     .pipe(cleancss())
     .pipe(concat("variables.css"))
-    .pipe(gulp.dest(path.resolve(builddir)));
-}
-
-function backupAndMoveStyleConfig() {
-  const date = Math.round(new Date().getTime() / 1000);
-  const name = "toolkit-var-" + date + ".scss";
-
-  return gulp
-    .src("display/grid-configs/toolkitStyles/toolkit-var.scss")
-    .pipe(rename(name))
-    .pipe(gulp.dest("display/grid-configs/backups"));
-}
-
-function copyToolkitVar() {
-  return gulp
-    .src(`${config.defaultConfig.toolkit.stylePath}/styles/toolkit-var.scss`)
-    .pipe(gulp.dest("display/grid-configs/toolkitStyles"));
-}
-
-function createCopyBackupStyleTask() {
-  const file = filesExist(
-    "display/grid-configs/toolkitStyles/toolkit-var.scss",
-    options
-  );
-  if (file && file.length) {
-    return gulp.series(
-      exports.backupAndMoveStyleConfig,
-      exports.copyToolkitVar
-    );
-  } else {
-    return exports.copyToolkitVar;
-  }
-}
-
-const scssFiles = [
-  `${config.defaultConfig.hmToolkit.stylePath}/styles/toolkit-mixins.scss`,
-  `${config.defaultConfig.hmToolkit.stylePath}/styles/toolkit-fonts.scss`,
-  `${config.defaultConfig.hmToolkit.stylePath}/styles/toolkit-breakpoints.scss`,
-  `${config.defaultConfig.hmToolkit.stylePath}/styles/toolkit-colors.scss`,
-  `${config.defaultConfig.hmToolkit.stylePath}/styles/toolkit-main.scss`,
-  "display/grid-configs/toolkitStyles/toolkit-var.scss",
-  `${config.defaultConfig.toolkit.stylePath}/styles/toolkit-assign.scss`
-];
-
-function mergeScss() {
-  return streamqueue({ objectMode: true }, gulp.src(scssFiles))
-    .pipe(concat("config-styles.scss"))
-    .pipe(gulp.dest("display/grid-configs"));
-}
-
-function compileScss() {
-  return gulp
-    .src("display/grid-configs/config-styles.scss")
-    .pipe(sass().on("error", sass.logError))
     .pipe(gulp.dest(path.resolve(builddir)));
 }
 
@@ -339,63 +272,20 @@ function handleInput() {
   });
 }
 
-function checkCustomScss() {
-  const toolkitVarFile = "display/grid-configs/toolkitStyles/toolkit-var.scss";
-  const regex = /^[.a-zA-Z].*\}$/ms;
-  const content = fs.readFileSync(toolkitVarFile, "utf8");
-  const isCustomScss = !regex.test(content);
-
-  if (!isCustomScss) {
-    console.log(
-      "You have tried to write custom CSS or SCSS. Please remove and try again!"
-    );
-  }
-  return isCustomScss;
-}
-
-function createCompileTask() {
-  const files = filesExist(scssFiles, options);
-  const allFiles = files && files.length === scssFiles.length;
-  const isCustomScss = allFiles ? checkCustomScss() : false;
-
-  if (allFiles && isCustomScss) {
-    return gulp.parallel(
-      exports.display,
-      exports.includes,
-      exports.mergeAndCompileScss,
-      exports.locales,
-      exports.config
-    );
-  } else {
-    return gulp.parallel(
-      exports.display,
-      exports.includes,
-      exports.locales,
-      exports.config
-    );
-  }
-}
-
 // exports
+
 exports.init = createPublicDir;
 exports.clean = removePublicDir;
 exports.display = compileDisplay;
-exports.compileScss = compileScss;
-exports.mergeScss = mergeScss;
 exports.locales = compileLocales;
 exports.config = compileConfig;
-exports.copyToolkitVar = copyToolkitVar;
-exports.backupAndMoveStyleConfig = backupAndMoveStyleConfig;
 exports.includes = gulp.parallel(compileIncludesCss, compileIncludesOther);
-
-exports.mergeAndCompileScss = gulp.series(
-  exports.mergeScss,
-  exports.compileScss
+exports.compile = gulp.parallel(
+  exports.display,
+  exports.includes,
+  exports.locales,
+  exports.config
 );
-
-exports.createCopyBackupStyle = createCopyBackupStyleTask();
-exports.compile = createCompileTask();
-
 exports.serve = gulp.parallel(
   serveAssets,
   handleInput,
