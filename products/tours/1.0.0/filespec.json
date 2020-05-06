@@ -5,6 +5,7 @@
     "includes",
     "includes/footer",
     "includes/head",
+    "includes/head/static",
     "includes/header",
     "locales",
     "locales/en"
@@ -18,6 +19,9 @@
     "yarn.lock",
     ".gitignore",
     "includes/head/partial.html",
+    "includes/head/static/banner-raw.jpg",
+    "includes/head/static/header.scss",
+    "includes/head/static/main.min.css",
     "includes/header/partial.html",
     "includes/footer/partial.html"
   ]
