@@ -8,7 +8,7 @@ const loadinit = require("./init");
 
 const products = {
   basket: ["1.0.0", "0.1.0"],
-  tours: ["0.1.1", "0.2.1"]
+  tours: ["1.0.0"],
 };
 
 require("yargs")
@@ -16,16 +16,16 @@ require("yargs")
   .command(
     ["init [product]", "$0 [product]"],
     "Initialise a new build repository",
-    yargs => {
+    (yargs) => {
       yargs
         .strict()
         .positional("product", {
           describe: "The product to initialise.",
-          choices: Object.keys(products)
+          choices: Object.keys(products),
         })
         .positional("versionnumber", {
           describe: "The version of the product to initialise.",
-          string: true
+          string: true,
         });
     },
     init
@@ -35,9 +35,9 @@ require("yargs")
     default: process.cwd(),
     describe: "Working directory to install into.",
     normalize: true,
-    coerce: cwd => {
+    coerce: (cwd) => {
       return path.resolve(cwd);
-    }
+    },
   })
   .demandCommand(1).argv;
 
@@ -51,17 +51,17 @@ function init(params) {
       .prompt({
         type: "list",
         name: "product",
-        choices: Object.keys(products)
+        choices: Object.keys(products),
       })
-      .then(panswers => {
+      .then((panswers) => {
         console.log(panswers);
         inquirer
           .prompt({
             type: "list",
             name: "versionno",
-            choices: products[panswers.product]
+            choices: products[panswers.product],
           })
-          .then(vanswers => {
+          .then((vanswers) => {
             loadinit(params.cwd, panswers.product, vanswers.versionno);
           });
       });
@@ -70,9 +70,9 @@ function init(params) {
       .prompt({
         type: "list",
         name: "versionno",
-        choices: products[params.product]
+        choices: products[params.product],
       })
-      .then(vanswers => {
+      .then((vanswers) => {
         loadinit(params.cwd, params.product, vanswers.versionno);
       });
   }
