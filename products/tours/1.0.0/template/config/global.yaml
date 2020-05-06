@@ -1,0 +1,22 @@
+date:
+  format: DD/MM/YYYY
+  longFormat: Do MMMM YYYY
+currency:
+  code: USD
+  symbol: "$"
+language: en
+paxconfig:
+  isAdultRequired: true
+  adultAgeRange:
+    - 18
+  childrenAgeRange:
+    - 2
+    - 17
+  infantAgeRange:
+    - 0
+    - 1
+  maxPax: 27
+  minAdults: 1
+  maxPerRoom: 9
+  maxRoomCount: 3
+  defaultAdults: 2
