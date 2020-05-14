@@ -19,7 +19,8 @@
     "start": "gulp start"
   },
   "devDependencies": {
-    "react-hm-toolkit-styles": "1.0.4",
+    "traveltek-react-basket-toolkit-styles": "1.1.1",
+    "react-hm-toolkit-styles": "1.1.0",
     "dotenv": "^8.2.0",
     "files-exist": "^1.1.0",
     "fs": "^0.0.1-security",

@@ -1,38 +1,52 @@
-   <header class="site__header">
-      <div class="site__header--logo">
-        <a href="/search/flighthotel">
-          <img src="http://static.traveltek.net/uploaded/2019/10/1570187896_tektravel.svg" alt="tektravel" title="tektravel">
-        </a>
-      </div>
-      <div class="site__header--journeys">
-        <ul>
-          <li>
-            <span>
-              <svg class="c-icon c-icon__airplane"><use xlink:href="#c-icon__airplane"></use></svg>
-              <svg class="c-icon c-icon__hotel"><use xlink:href="#c-icon__hotel"></use></svg>
-            </span>
-            <a href="/search/flighthotel" class="">Flight &amp; Hotel</a>
-          </li>
-          <li>
-            <span>
-              <svg class="c-icon c-icon__transport_boat"><use xlink:href="#c-icon__transport_boat"></use></svg>
-            </span>
-            <a href="/search/cruise" class="">Cruise</a>
-          </li>
-          <li>
-            <span>
-              <svg class="c-icon c-icon__map1"><use xlink:href="#c-icon__map1"></use></svg>
-            </span>
-            <a href="/search/events/" class="active">Tours</a>
-          </li>
-        </ul>
-      </div>
-      <div class="site__header--helptext">
-        <p>
-          The World's <br>
-          <span>most advanced</span> <br>
-          holiday booking system...
-        </p>
-        <a href="#0" class="c-btn c-btn--primary">Enquire now</a>
-      </div>
-    </header>
+<link
+	rel="stylesheet"
+    href="%STATIC%/header.css"
+/>
+
+<header>
+  <div class="container header__wrapper">
+    <div class="header__logo">
+      <a href="/search/flighthotel">
+        <img src="http://static.traveltek.net/uploaded/2019/10/1570187896_tektravel.svg" alt="tektravel" title="tektravel">
+      </a>
+    </div>
+    <div class="header__nav">
+      <ul>
+        <li>
+          <a href="/search/flighthotel" class="">
+            <div>
+              <svg class="c-icon c-icon__airplane">
+                <use xlink:href="#c-icon__airplane"></use>
+              </svg>
+              <svg class="c-icon c-icon__hotel">
+                <use xlink:href="#c-icon__hotel"></use>
+              </svg>
+            </div>
+            <span>Flight &amp; Hotel</span></a>
+        </li>
+        <li>
+          <a href="/search/cruise" class="">
+            <svg class="c-icon c-icon__transport_boat">
+              <use xlink:href="#c-icon__transport_boat"></use>
+            </svg>
+            <span>Cruise</span></a>
+        </li>
+        <li>
+          <a href="/search/events/" class="active">
+            <svg class="c-icon c-icon__map1">
+              <use xlink:href="#c-icon__map1"></use>
+            </svg>
+            <span>Tours</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="header__helptext">
+      <p>
+        The World's<span>most advanced</span>holiday booking system...
+      </p>
+    </div>
+    <div class="header__link">
+      <a href="#0" class="c-btn c-btn--primary">Enquire now</a>
+    </div>
+  </div>
+</header>

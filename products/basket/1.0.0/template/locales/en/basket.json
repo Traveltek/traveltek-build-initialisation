@@ -5,7 +5,7 @@
   "carhire_details_header": "Carhire Details",
   "carhire_dropoff": "Drop Off",
   "carhire_dropoff_location": "Drop Off Location",
-  "carhire_edit_button": "Edit Carhire",
+  "carhire_edit_button": "Edit Car Hire",
   "carhire_header": "Car Hire",
   "carhire_pickup": "Pick Up",
   "carhire_pickup_location": "Pick Up Location",
@@ -98,5 +98,6 @@
   "attraction_description": "Description",
   "attraction_details_header": "Attraction Details",
   "attraction_modal_description": "Description",
-  "attraction_modal_images": "Images"
+  "attraction_modal_images": "Images",
+  "attraction_edit_button": "Edit Attraction"
 }

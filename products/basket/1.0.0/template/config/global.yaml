@@ -1,9 +1,18 @@
+SID: 41969
 date:
   format: DD/MM/YYYY
   longFormat: Do MMMM YYYY
 currency:
   code: GBP
   symbol: "£"
+language: en
+routes:
+  homepage: ""
+  tour:
+    search: "search/tour/"
+    results: "search/tour/results"
+    details: "search/tour/details"
+    fusionbooking: "//secure.traveltek.net/fusion/bookingform.pl?sessionkey="
 paxconfig:
   isAdultRequired: true
   adultAgeRange:
@@ -19,6 +28,9 @@ paxconfig:
   maxPerRoom: 3
   maxRoomCount: 3
   defaultAdults: 2
+basket:
+  redirectOnSuccess: true
+  redirectUrl: "/fusion/itinerary.pl?sessionkey=[sessionkey]"
 BasketCards:
   BasketFlightCard:
     segments:
@@ -114,16 +126,33 @@ BasketModals:
       - [CLASS, { modifier: "" }]
       - [STOPS, { modifier: "" }]
     stops:
-      - [STOP_ICON, {}]
       - [STOP_TITLE, { modifier: "" }]
-      - [STOP_TEXT, { modifier: "" }]
-      - [ARRIVE_ICON, {}]
-      - [ARRIVE_TIME, { modifier: "" }]
-      - [ARRIVE_DATE, { modifier: "" }]
-      - [DEPART_ICON, {}]
-      - [DEPART_TIME, { modifier: "" }]
-      - [DEPART_DATE, { modifier: "" }]
+      - [ARRIVAL, {}]
+      - [DEPARTURE, {}]
   BasketHotelModal:
     - [DESCRIPTION, { modifier: "" }]
     - [IMAGES, { modifier: "" }]
     - [LOCATION, { modifier: "" }]
+  BasketTransferModal:
+    - [PICKUP, { modifier: "" }]
+    - [DROPOFF, { modifier: "" }]
+    - [RETURN_DATE, { modifier: "" }]
+    - [VEHICLE_TYPE, { modifier: "" }]
+    - [ENGINE, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [DESCRIPTION, { modifier: "" }]
+  BasketCarhireModal:
+    - [IMAGE, { modifier: "" }]
+    - [PICKUP, { modifier: "" }]
+    - [DROPOFF, { modifier: "" }]
+    - [VEHICLE_TYPE, { modifier: "" }]
+    - [ENGINE, { modifier: "" }]
+    - [SUPPLIER, { modifier: "" }]
+    - [TRANSMISSION, { modifier: "" }]
+    - [DOORS, { modifier: "" }]
+    - [PRICE, { modifier: "" }]
+    - [EXTRAS, { modifier: "" }]
+    - [ESSENTIALS, { modifier: "" }]
+  BasketAttractionModal:
+    - [DESCRIPTION, { modifier: "" }]
+    - [IMAGES, { modifier: "" }]
