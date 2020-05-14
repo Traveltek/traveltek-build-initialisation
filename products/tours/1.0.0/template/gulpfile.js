@@ -15,6 +15,10 @@ const path = require("path");
 const rimraf = require("rimraf");
 const readline = require("readline");
 
+var sass = require("gulp-sass");
+
+sass.compiler = require("node-sass");
+
 var builddir = process.env.BUILD_DIR || __dirname + "/public";
 var streams = [];
 
@@ -115,7 +119,7 @@ function reload() {
 
 function compileDisplay() {
   return gulp
-    .src("display/*.css")
+    .src("display/**/*.css")
     .pipe(cleancss())
     .pipe(concat("variables.css"))
     .pipe(gulp.dest(path.resolve(builddir)));
@@ -155,6 +159,24 @@ function compileIncludesOther() {
     ])
     .pipe(gulp.dest(path.resolve(builddir, "includes")));
 }
+
+function headerSassToCss() {
+  return gulp
+    .src("includes/header/static/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("includes/header/static"));
+}
+
+function footerSassToCss() {
+  return gulp
+    .src("includes/footer/static/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("includes/footer/static"));
+}
+
+gulp.task("sass:watch", function () {
+  gulp.watch("./sass/**/*.scss", ["sass"]);
+});
 
 function rewriteIncludes(content) {
   var incs = content.match(/\%[A-Z]+\%/g);
@@ -278,7 +300,12 @@ exports.clean = removePublicDir;
 exports.display = compileDisplay;
 exports.locales = compileLocales;
 exports.config = compileConfig;
-exports.includes = gulp.parallel(compileIncludesCss, compileIncludesOther);
+exports.includes = gulp.parallel(
+  compileIncludesCss,
+  compileIncludesOther,
+  headerSassToCss,
+  footerSassToCss
+);
 exports.compile = gulp.parallel(
   exports.display,
   exports.includes,
