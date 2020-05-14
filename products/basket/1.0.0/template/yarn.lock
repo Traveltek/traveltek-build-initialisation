@@ -2758,10 +2758,10 @@ raw-body@~1.1.0:
     bytes "1"
     string_decoder "0.10"
 
-react-hm-toolkit-styles@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-hm-toolkit-styles/-/react-hm-toolkit-styles-1.0.4.tgz#7c69db7fd7eccefd279a47978659c47c3d24399a"
-  integrity sha512-veTr4GZnX6f5D8xobAySj5c624M6c3cf+QLb5/aUGsGMRDvR7nJbRG+ykrTVW7V1Q2R+5ke/o9opGs2S6L+Z0Q==
+react-hm-toolkit-styles@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-hm-toolkit-styles/-/react-hm-toolkit-styles-1.1.0.tgz#98422b219d0bd7efae46f89fc22f4a71c46ed177"
+  integrity sha512-SdpMYuRPOAK00P6M0Lc8KygM2xjdOG1UEGA/GnKvQPreqt0rSz+5+5cpKqPJg4TFTBqXH5rAPLjTWcDvrOmOoA==
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -3526,6 +3526,11 @@ tough-cookie@~2.4.3:
   dependencies:
     psl "^1.1.24"
     punycode "^1.4.1"
+
+traveltek-react-basket-toolkit-styles@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/traveltek-react-basket-toolkit-styles/-/traveltek-react-basket-toolkit-styles-1.1.1.tgz#0daa7d0cf341a4d06c3bc545ebe90a49631a1848"
+  integrity sha512-fwcICGD9pktH8ZdxlQuy+YZ15vcW/0QEbrHpa8xamKnz244ti9jaAaWQ3UuikocoaTwqev7qLjD/rJ/R0KOfCQ==
 
 trim-newlines@^1.0.0:
   version "1.0.0"

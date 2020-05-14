@@ -1,7 +1,7 @@
 :root {
   /* Site Defaults */
 
-  --primary-color: red;
+  --primary-color: #f47633;
   --primary-color-lighter: #f79663;
   --primary-color-darker: #e8590c;
 
@@ -57,6 +57,7 @@
   --ghost-button-font-color: #f47633;
   /*--ghost-button-font-weight:  */
   /*--ghost-button-font-size:  */
+  --ghost-button-border-bottom-color: #f47633;
   /*--ghost-button-font-family:  */
   /* --ghost-button-font-shaddow:  */
 

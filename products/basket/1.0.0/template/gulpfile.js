@@ -16,13 +16,15 @@ const path = require("path");
 const rimraf = require("rimraf");
 const readline = require("readline");
 
+const sass = require("gulp-sass");
+
 var builddir = process.env.BUILD_DIR || __dirname + "/public";
 var streams = [];
 
 // init
 
 function createPublicDir() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (!fs.existsSync(path.resolve(builddir))) {
       fs.mkdirSync(path.resolve(builddir));
       fs.closeSync(fs.openSync(path.resolve(builddir, "blank.js"), "w"));
@@ -34,9 +36,9 @@ function createPublicDir() {
 // clean
 
 function removePublicDir() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (fs.existsSync(path.resolve(builddir))) {
-      rimraf(path.resolve(builddir), function(e) {
+      rimraf(path.resolve(builddir), function (e) {
         if (e) {
           console.log(e);
         }
@@ -63,11 +65,11 @@ async function serveAssets() {
         autoRewrite: true,
         protocolRewrite: "http",
         onProxyReq: onProxyReq,
-        onProxyRes: onProxyRes
+        onProxyRes: onProxyRes,
       });
 
       return [proxyServer];
-    }
+    },
   });
 }
 
@@ -76,13 +78,13 @@ function onProxyRes(proxyRes, req, res) {
   var _end = res.end;
 
   var buffer = "";
-  res.write = function(data) {
+  res.write = function (data) {
     let body = data.toString("utf-8");
     buffer = buffer + body;
     return _write.call(res, "");
   };
 
-  res.end = function() {
+  res.end = function () {
     let output = rewriteContent(buffer);
     _write.call(res, output);
     return _end.call(res);
@@ -99,14 +101,14 @@ function rewriteContent(content) {
   //content = content.replace(/HEAD/, "");
   content = content.replace(
     /\%CLIENTINCLUDES\%/,
-    '<link rel="stylesheet" type="text/css" href="/public/variables.css" /><script type="text/javascript">window.traveltek_config_base = "/public"</script>'
+    '<link rel="stylesheet" type="text/css" href="/public/variables.css" /><script type="text/javascript">window.traveltek_locale_base = "/public/locales";window.traveltek_config_base = "/public/config"</script>'
   );
   content = rewriteIncludes(content);
   return content;
 }
 
 function reload() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     gulp.src("public/blank.js").pipe(connect.reload());
     resolve();
   });
@@ -123,17 +125,17 @@ function compileDisplay() {
 }
 
 function reloadDisplay() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     gulp.src("public/variables.css").pipe(connect.reload());
     resolve();
   });
 }
 
 function watchDisplay() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     streams.push([
       resolve,
-      gulp.watch("display/*.css", gulp.series(compileDisplay, reloadDisplay))
+      gulp.watch("display/*.css", gulp.series(compileDisplay, reloadDisplay)),
     ]);
   });
 }
@@ -147,14 +149,36 @@ function compileIncludesCss() {
     .pipe(gulp.dest(path.resolve(builddir, "includes")));
 }
 
+function compileIncludesScss() {
+  return gulp
+    .src("includes/*/static/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(cleancss())
+    .pipe(gulp.dest(path.resolve(builddir, "includes")));
+}
+
 function compileIncludesOther() {
   return gulp
     .src([
       "includes/*/partial.html",
       "includes/*/static/*",
-      "!includes/*/static/*.css"
+      "!includes/*/static/*.css",
     ])
     .pipe(gulp.dest(path.resolve(builddir, "includes")));
+}
+
+function headerSassToCss() {
+  return gulp
+    .src("includes/header/static/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("includes/header/static"));
+}
+
+function footerSassToCss() {
+  return gulp
+    .src("includes/footer/static/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest("includes/footer/static"));
 }
 
 function rewriteIncludes(content) {
@@ -185,13 +209,13 @@ function rewriteIncludes(content) {
 }
 
 function watchIncludes() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     streams.push([
       resolve,
       gulp.watch(
         ["includes/*/partial.html", "includes/*/static/**"],
         gulp.series(exports.includes, reload)
-      )
+      ),
     ]);
   });
 }
@@ -205,10 +229,10 @@ function compileLocales() {
 }
 
 function watchLocales() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     streams.push([
       resolve,
-      gulp.watch("locales/**/*.json", gulp.series(exports.locales, reload))
+      gulp.watch("locales/**/*.json", gulp.series(exports.locales, reload)),
     ]);
   });
 }
@@ -223,13 +247,13 @@ function compileConfig() {
 }
 
 function watchConfig() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     streams.push([
       resolve,
       gulp.watch(
         ["config/*.yaml", "config/**/*.yaml"],
         gulp.series(exports.config, reload)
-      )
+      ),
     ]);
   });
 }
@@ -237,10 +261,10 @@ function watchConfig() {
 // cli
 
 function handleInput() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     let rl = readline.createInterface({
       input: process.stdin,
-      output: process.stdout
+      output: process.stdout,
     });
 
     rl.on("close", () => {
@@ -256,7 +280,7 @@ function handleInput() {
       process.exit(0);
     });
 
-    rl.on("line", line => {
+    rl.on("line", (line) => {
       switch (line.trim()) {
         case "exit":
           rl.close();
@@ -279,7 +303,13 @@ exports.clean = removePublicDir;
 exports.display = compileDisplay;
 exports.locales = compileLocales;
 exports.config = compileConfig;
-exports.includes = gulp.parallel(compileIncludesCss, compileIncludesOther);
+exports.includes = gulp.parallel(
+  compileIncludesCss,
+  compileIncludesScss,
+  compileIncludesOther,
+  headerSassToCss,
+  footerSassToCss
+);
 exports.compile = gulp.parallel(
   exports.display,
   exports.includes,
