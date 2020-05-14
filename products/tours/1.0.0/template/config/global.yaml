@@ -1,9 +1,10 @@
+SID: 41562
 date:
   format: DD/MM/YYYY
   longFormat: Do MMMM YYYY
 currency:
-  code: USD
-  symbol: "$"
+  code: GBP
+  symbol: "£"
 language: en
 paxconfig:
   isAdultRequired: true
