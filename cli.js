@@ -8,6 +8,7 @@ const loadinit = require("./init");
 
 const products = {
   basket: ["1.0.0", "0.1.0"],
+  confirmation: ["1.0.0"],
   tours: ["1.0.0"],
 };
 
