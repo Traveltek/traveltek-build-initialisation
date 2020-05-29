@@ -1,0 +1,9 @@
+{
+  "404_back_button": "Back to Search",
+  "404_not_found": "Page Not Found",
+  "404_message": "The page you are looking for could not be found.",
+  "shared_error_code": "Error code: ",
+  "shared_error_back_button": "Back to Search",
+  "application_error_text": "Application Error",
+  "application_error_description": "Sorry, there was an error within the application."
+}
